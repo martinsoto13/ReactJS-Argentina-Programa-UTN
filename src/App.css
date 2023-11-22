@@ -66,3 +66,70 @@ footer {
   background-color: #3498db;
   color: #fff;
 }
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+  position: relative;
+}
+
+.task-item.completed p {
+  text-decoration: line-through;
+  color: #777;
+}
+
+button {
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Añadimos transición para el color del texto */
+}
+
+/* Estilos para el alert de confirmación */
+.delete-alert {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  text-align: center;
+  border-radius: 8px;
+  width: 250px;
+}
+
+.delete-alert p {
+  margin: 0 0 15px;
+  color: #333;
+}
+
+.delete-alert button {
+  padding: 8px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.delete-alert button.delete {
+  background-color: #e74c3c;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.delete-alert button.cancel {
+  background-color: #34dbd3;
+  color: #fff;
+}
+
+/* Hover styles */
+button:hover {
+  filter: brightness(0.9); /* Añadimos un efecto de brillo al hacer hover */
+}
+
+.delete-alert button:hover {
+  filter: brightness(1); /* Restablecemos el brillo al hacer hover en el alert */
+}
