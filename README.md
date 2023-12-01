@@ -1,6 +1,7 @@
 <<<<<<< HEAD
 # ReactJS-Argentina-Programa-UTN
 Crear una aplicación web utilizando React que permita gestionar una lista de tareas. La aplicación deberá hacer uso de componentes funcionales, el hook useState para el manejo del estado, el hook useEffect para realizar efectos secundarios, y eventos para interactuar con el usuario.
+Deploy: https://react-js-argentina-programa-utn.vercel.app/
 
 # Getting Started with Create React App
 
