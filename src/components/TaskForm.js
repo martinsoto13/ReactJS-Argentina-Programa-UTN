@@ -16,7 +16,9 @@ function TaskForm({ tasks, setTasks }) {
         completed: false,
       };
 
-      const updatedTasks = [...tasks, newTaskObject];
+      // Modificar aquí para colocar la nueva tarea al principio del array
+      const updatedTasks = [newTaskObject, ...tasks];
+      
       setTasks(updatedTasks);
       setNewTask('');
     }
@@ -29,6 +31,7 @@ function TaskForm({ tasks, setTasks }) {
         placeholder="Nueva tarea"
         value={newTask}
         onChange={handleInputChange}
+        required = "true"
       />
       <button type="submit">Agregar</button>
     </form>
@@ -36,4 +39,5 @@ function TaskForm({ tasks, setTasks }) {
 }
 
 export default TaskForm;
+
 
