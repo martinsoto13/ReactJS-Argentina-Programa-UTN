@@ -1,49 +1,63 @@
 import React, { useState } from 'react';
+import Swal from 'sweetalert2';
 
 function TaskItem({ task, completeTask, deleteTask }) {
-  const [isAlertOpen, setAlertOpen] = useState(false);
   const [isCompleted, setCompleted] = useState(task.completed);
 
   const handleComplete = () => {
-    completeTask();
-    setCompleted(true);
+    if (!isCompleted) {
+      Swal.fire({
+        title: 'Confirmar acción',
+        text: '¿Estás seguro de que quieres marcar esta tarea como completada?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Sí',
+        cancelButtonText: 'No',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          completeTask();
+          setCompleted(true);
+        }
+      });
+    } else {
+      setCompleted(false);
+    }
   };
 
   const handleDelete = () => {
-    // Mostrar un alert para confirmar la eliminación
-    setAlertOpen(true);
-  };
-
-  const handleConfirmDelete = () => {
-    // Si el usuario confirma, ejecutar la función de eliminación
-    deleteTask();
-    setAlertOpen(false);
-  };
-
-  const handleCancelDelete = () => {
-    // Si el usuario cancela, cerrar el alert
-    setAlertOpen(false);
+    Swal.fire({
+      title: 'Confirmar acción',
+      text: '¿Estás seguro de que quieres eliminar esta tarea?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'No',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteTask();
+      }
+    });
   };
 
   return (
-    <div className={`task-item ${task.completed ? 'completed' : ''}`}>
+    <div className={`task-item ${isCompleted ? 'completed' : ''}`}>
       <p>{task.name}</p>
-      <button onClick={handleComplete} disabled={isCompleted}>
+      <button
+        onClick={handleComplete}
+        disabled={isCompleted}
+        className={`complete-button ${isCompleted ? 'completed' : ''}`}
+      >
         {isCompleted ? 'Completado' : 'Completar'}
       </button>
-      <button className="delete-button" onClick={handleDelete}>Eliminar</button>
-
-      {isAlertOpen && (
-        <div className="delete-alert">
-          <p>¿Estás seguro de que quieres eliminar esta tarea?</p>
-          <button className="delete-button" onClick={handleConfirmDelete}>Sí</button>
-          <button onClick={handleCancelDelete}>No</button>
-        </div>
-      )}
+      <button className="delete-button" onClick={handleDelete}>
+        Eliminar
+      </button>
     </div>
   );
 }
 
 export default TaskItem;
+
+
 
 
