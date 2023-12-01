@@ -133,3 +133,17 @@ button:hover {
 .delete-alert button:hover {
   filter: brightness(1); /* Restablecemos el brillo al hacer hover en el alert */
 }
+/* Estilo para el botón de eliminar */
+.delete-button {
+  background-color: red; /* Color de fondo rojo */
+  color: white; /* Texto en color blanco para mayor contraste */
+  border: none; /* Sin borde */
+  padding: 5px 10px; /* Ajusta el espaciado según sea necesario */
+  cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+  margin-left: 10px; /* Ajusta el margen izquierdo según sea necesario */
+}
+
+/* Cambia el color del botón al pasar el mouse sobre él (opcional) */
+.delete-button:hover {
+  background-color: darkred; /* Color de fondo más oscuro al pasar el mouse */
+}

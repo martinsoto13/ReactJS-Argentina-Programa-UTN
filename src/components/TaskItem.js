@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 
 function TaskItem({ task, completeTask, deleteTask }) {
   const [isAlertOpen, setAlertOpen] = useState(false);
+  const [isCompleted, setCompleted] = useState(task.completed);
 
   const handleComplete = () => {
     completeTask();
+    setCompleted(true);
   };
 
   const handleDelete = () => {
@@ -26,13 +28,15 @@ function TaskItem({ task, completeTask, deleteTask }) {
   return (
     <div className={`task-item ${task.completed ? 'completed' : ''}`}>
       <p>{task.name}</p>
-      <button onClick={handleComplete}>Completar</button>
-      <button onClick={handleDelete}>Eliminar</button>
+      <button onClick={handleComplete} disabled={isCompleted}>
+        {isCompleted ? 'Completado' : 'Completar'}
+      </button>
+      <button className="delete-button" onClick={handleDelete}>Eliminar</button>
 
       {isAlertOpen && (
         <div className="delete-alert">
           <p>¿Estás seguro de que quieres eliminar esta tarea?</p>
-          <button onClick={handleConfirmDelete}>Sí</button>
+          <button className="delete-button" onClick={handleConfirmDelete}>Sí</button>
           <button onClick={handleCancelDelete}>No</button>
         </div>
       )}
